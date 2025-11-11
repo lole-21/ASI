@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+env/
+.git
+.gitignore
+.idea/
+.vscode/
+.DS_Store
+*.ipynb_checkpoints
+*.log
+*.csv
+*.xlsx
+*.zip
