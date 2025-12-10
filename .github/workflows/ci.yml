@@ -38,19 +38,10 @@ jobs:
 
       - name: Build Docker image
         run: |
-          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/ASI/iris-streamlit:latest
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/asi/iris-streamlit:latest
           docker build -t $IMAGE_NAME .
 
       - name: Push Docker image
         run: |
-          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/ASI/iris-streamlit:latest
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/asi/iris-streamlit:latest
           docker push $IMAGE_NAME
-
-      - name: Make image public
-        if: success()
-        run: |
-          curl -X PATCH \
-            -H "Authorization: Bearer ${{ secrets.CR_PAT }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/user/packages/container/iris-streamlit \
-            -d '{"visibility":"public"}'
