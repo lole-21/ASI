@@ -16,12 +16,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-
 
       - name: Install dependencies
         run: |
@@ -29,23 +27,23 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
-
       - name: Run tests
         run: pytest -q
+
 
       - name: Log in to GHCR
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
-
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/lole-21/iris-streamlit:latest .
-
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/iris-streamlit:latest
+          docker build -t $IMAGE_NAME .
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/lole-21/iris-streamlit:latest
+          IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/iris-streamlit:latest
+          docker push $IMAGE_NAME
