@@ -1,0 +1,9 @@
+{
+    "best_model": "LogisticRegression",
+    "metrics": {
+        "accuracy": 0.9111111111111111,
+        "f1_macro": 0.9191176470588235
+    },
+    "mlflow_run_id": "5fe3f79edd4840ba879cf63d92af23bb",
+    "version": "v1.0.0"
+}
